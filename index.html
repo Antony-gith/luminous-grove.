@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Luminous Grove Hotel & 5★ Restaurant</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green1:#00ff7f;
+  --green2:#32cd32;
+  --bg:#f4f9f4;
+  --card:#ffffff;
+  --muted:#666;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:'Poppins',system-ui,Segoe UI,Arial;
+  background:var(--bg);
+  color:#222;
+  -webkit-font-smoothing:antialiased;
+}
+.cover{
+  min-height:60vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:60px 20px;
+  background: linear-gradient(135deg, rgba(0,255,127,0.95) 0%, rgba(50,205,50,0.95) 100%);
+  color:#042;
+  position:relative;
+  overflow:hidden;
+}
+.cover::after{
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.12), transparent 10%),
+              radial-gradient(circle at 80% 80%, rgba(255,255,255,0.08), transparent 12%);
+  pointer-events:none;
+}
+.hero{
+  max-width:960px; margin:auto; z-index:2;
+}
+.logo{
+  display:inline-block;
+  background:rgba(255,255,255,0.12);
+  padding:10px 16px;
+  border-radius:12px;
+  font-weight:700;
+  letter-spacing:0.6px;
+  color:#012;
+  margin-bottom:18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+h1{
+  margin:12px 0 8px;
+  font-size:44px;
+  line-height:1.02;
+  color:#022;
+}
+p.lead{
+  margin:0 auto 18px;
+  max-width:760px;
+  font-size:18px;
+  color: #033;
+  opacity:0.95;
+}
+.container{
+  max-width:1100px;
+  margin: -60px auto 60px;
+  padding:30px;
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap:24px;
+}
+.card{
+  background:var(--card);
+  border-radius:16px;
+  padding:18px;
+  box-shadow: 0 10px 30px rgba(10,20,10,0.06);
+}
+.section-title{
+  display:flex; align-items:center; gap:12px; margin-bottom:12px;
+}
+.section-title h2{ margin:0; color:var(--green2); font-size:20px;}
+.rooms-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill,minmax(140px,1fr));
+  gap:12px;
+}
+.room{
+  border-radius:12px;
+  padding:10px;
+  border:1px solid #eef6ee;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  background:linear-gradient(180deg, #ffffff, #fbfffb);
+}
+.room h4{ margin:0; font-size:16px;}
+.status{
+  font-weight:700;
+  padding:6px 8px;
+  border-radius:10px;
+  display:inline-block;
+  font-size:13px;
+}
+.status.empty{ background:#e6ffee; color:#046000; border:1px solid #bff5bf;}
+.status.occupied{ background:#ffecec; color:#7a0000; border:1px solid #ffcfcf;}
+.room .actions{ margin-top:auto; display:flex; gap:8px; }
+.btn{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:10px;
+  background:var(--green2);
+  color:white;
+  font-weight:600;
+  border:none;
+  cursor:pointer;
+  transition:transform .12s ease, box-shadow .12s;
+  text-decoration:none;
+  text-align:center;
+}
+.btn.ghost{ background:transparent; color:var(--green2); border:1px solid #dff5df; }
+.btn.danger{ background:#e74c3c; }
+.map-frame{
+  height:240px;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid #e6f5e6;
+}
+.menu-list{ display:flex; flex-direction:column; gap:12px; margin-top:12px;}
+.menu-item{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px; border-radius:10px; border:1px solid #f0f7f0;
+}
+.menu-item .meta{ display:flex; gap:12px; align-items:center;}
+.price{ font-weight:700; color:var(--green2); }
+.cart{
+  margin-top:14px;
+  border-top:1px dashed #eef7ee;
+  padding-top:12px;
+}
+.cart .cart-row{ display:flex; justify-content:space-between; padding:6px 0; font-size:14px;}
+.muted{ color:var(--muted); font-size:13px; }
+.full-width{ grid-column: 1 / -1; margin-top:18px; }
+footer{ text-align:center; padding:26px 14px; color:#567; font-size:14px; }
+@media (max-width:980px){
+  .container{ grid-template-columns: 1fr; margin-top:-40px; padding:18px;}
+  h1{ font-size:36px}
+}
+.small{ font-size:13px; color:var(--muted); }
+.center{ text-align:center; }
+.badge{ background:#fff; padding:6px 10px; border-radius:999px; box-shadow:0 6px 18px rgba(0,0,0,.06);}
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="hero">
+    <div class="logo">LUMINOUS GROVE</div>
+    <h1>Luminous Grove Hotel & 5★ Restaurant</h1>
+    <p class="lead">We live to serve. Experience fine dining, comfortable suites, and intelligent service — book a suite, order a meal, or get directions to our doorstep.</p>
+    <div class="small">Scroll down to view suites, menu, and map. Your comfort is our highest priority.</div>
+  </div>
+</section>
+
+<main class="container">
+
+  <div class="card">
+    <div class="section-title">
+      <h2>Suites & Bookings</h2>
+      <div class="muted">Click a suite to Book / Check-out / View details</div>
+    </div>
+
+    <div id="rooms" class="rooms-grid" aria-live="polite"></div>
+
+    <div id="bookingModal" class="card" style="display:none; margin-top:16px;">
+      <h3 id="modalTitle">Book Suite</h3>
+      <div style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
+        <label class="small">Guest name
+          <input id="guestName" type="text" placeholder="Full name" style="width:100%; padding:8px; border-radius:8px; border:1px solid #e8efe8;">
+        </label>
+        <label class="small">Phone
+          <input id="guestPhone" type="tel" placeholder="+2547..." style="width:100%; padding:8px; border-radius:8px; border:1px solid #e8efe8;">
+        </label>
+        <div style="display:flex; gap:8px; justify-content:flex-end;">
+          <button class="btn ghost" onclick="closeBooking()">Cancel</button>
+          <button class="btn" onclick="confirmBooking()">Confirm Booking</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="roomOrdersArea" style="margin-top:18px;"></div>
+  </div>
+
+  <aside class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <h3 style="margin:0; color:var(--green2)">Location</h3>
+        <div class="small">Find us & get directions</div>
+      </div>
+      <div class="badge small">Open: 8am - 11pm</div>
+    </div>
+
+    <div class="map-frame" style="margin-top:12px;">
+      <iframe
+        id="mapIframe"
+        width="100%" height="100%" frameborder="0" style="border:0"
+        src="https://www.google.com/maps?q=-1.292066,36.821945&z=15&output=embed"
+        allowfullscreen=""
+        loading="lazy"></iframe>
+    </div>
+
+    <div style="margin-top:12px; display:flex; gap:8px;">
+      <a id="directionsBtn" class="btn ghost" target="_blank" rel="noopener">Get Directions</a>
+      <a class="btn" href="#contact">Contact</a>
+    </div>
+
+    <div style="margin-top:18px;">
+      <h3 style="margin:0; color:var(--green2)">Menu</h3>
+      <div class="small">Tap items to add to cart</div>
+
+      <div id="menuList" class="menu-list"></div>
+
+      <div class="cart" id="cartArea">
+        <div style="display:flex; justify-content:space-between; align-items:center">
+          <strong>Cart</strong>
+          <span class="small muted">Assign order to a suite when placing</span>
+        </div>
+        <div id="cartRows"></div>
+        <div style="margin-top:10px; display:flex; gap:8px; justify-content:space-between; align-items:center;">
+          <div class="small muted">Total:</div>
+          <div id="cartTotal" style="font-weight:700; color:var(--green2)">KSH 0</div>
+        </div>
+        <div style="margin-top:12px; display:flex; gap:8px;">
+          <select id="assignRoomSelect" style="flex:1; padding:8px; border-radius:8px; border:1px solid #eef7ee;">
+            <option value="">Select suite to assign order</option>
+          </select>
+          <button class="btn" onclick="placeOrder()">Place Order</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="card full-width" id="contact">
+    <div style="display:flex; gap:18px; align-items:center; flex-wrap:wrap;">
+      <div style="flex:1; min-width:260px;">
+        <h2>About Luminous Grove</h2>
+        <p class="muted">A 5-star boutique hotel & fine-dining restaurant. We combine elegant comfort with intelligent service — automated reservations, friendly staff, and chef-curated menus.</p>
+        <p><strong>Phone:</strong> +254 759 933 073 &nbsp; | &nbsp; <strong>Email:</strong> hello@luminousgrove.example</p>
+      </div>
+
+      <div style="width:320px;">
+        <h3 style="margin-top:0;color:var(--green2)">Packages</h3>
+        <ul class="small muted">
+          <li>Suite + Breakfast — KSH 3,500 / night</li>
+          <li>Business Stay — KSH 4,500 / night (includes workspace)</li>
+          <li>Romance Package — KSH 7,500 / night (dinner & dessert included)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Luminous Grove — We live to serve.
+</footer>
+
+<script>
+// Helper functions
+const $=id=>document.getElementById(id);
+const money=v=>`KSH ${Number(v).toLocaleString()}`;
+function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g,(m)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+
+// Generate 50 real foods
+const MENU=[
+  {id:'m1',name:'Grilled Salmon',price:1200},{id:'m2',name:'Beef Wellington',price:2500},{id:'m3',name:'Caesar Salad',price:800},
+  {id:'m4',name:'Margherita Pizza',price:900},{id:'m5',name:'Lobster Thermidor',price:4000},{id:'m6',name:'Ribeye Steak',price:2800},
+  {id:'m7',name:'Spaghetti Carbonara',price:950},{id:'m8',name:'Tiramisu',price:650},{id:'m9',name:'Chocolate Lava Cake',price:700},
+  {id:'m10',name:'Chicken Alfredo',price:1000},{id:'m11',name:'Vegetable Stir Fry',price:750},{id:'m12',name:'Shrimp Scampi',price:1200},
+  {id:'m13',name:'French Onion Soup',price:600},{id:'m14',name:'Duck Confit',price:2200},{id:'m15',name:'Grilled Tuna',price:1300},
+  {id:'m16',name:'Prawn Cocktail',price:900},{id:'m17',name:'Greek Salad',price:800},{id:'m18',name:'Mushroom Risotto',price:1100},
+  {id:'m19',name:'BBQ Ribs',price:2000},{id:'m20',name:'Clam Chowder',price:700},{id:'m21',name:'Beef Burger',price:950},
+  {id:'m22',name:'Fish Tacos',price:900},{id:'m23',name:'Chicken Wings',price:850},{id:'m24',name:'Eggplant Parmesan',price:950},
+  {id:'m25',name:'Fettuccine Alfredo',price:1000},{id:'m26',name:'Seafood Paella',price:2500},{id:'m27',name:'Sushi Platter',price:2200},
+  {id:'m28',name:'Lamb Chops',price:2300},{id:'m29',name:'Stuffed Peppers',price:900},{id:'m30',name:'Pan Seared Scallops',price:1500},
+  {id:'m31',name:'Caprese Salad',price:800},{id:'m32',name:'Peking Duck',price:2800},{id:'m33',name:'Burrata Cheese',price:900},
+  {id:'m34',name:'Risotto Primavera',price:1000},{id:'m35',name:'Chicken Tikka Masala',price:1100},{id:'m36',name:'Linguine with Clams',price:1300},
+  {id:'m37',name:'Grilled Lamb',price:2400},{id:'m38',name:'Veggie Burger',price:850},{id:'m39',name:'Beef Stroganoff',price:2000},
+  {id:'m40',name:'Pasta Bolognese',price:950},{id:'m41',name:'Sea Bass Fillet',price:1500},{id:'m42',name:'Tuna Tartare',price:1400},
+  {id:'m43',name:'Bruschetta',price:600},{id:'m44',name:'Cheesecake',price:700},{id:'m45',name:'Chocolate Mousse',price:650},
+  {id:'m46',name:'Veggie Pizza',price:850},{id:'m47',name:'Chicken Parmesan',price:1200},{id:'m48',name:'Lamb Kebab',price:1800},
+  {id:'m49',name:'Grilled Octopus',price:1600},{id:'m50',name:'Seafood Chowder',price:1100}
+];
+
+// Generate 50 suites
+function defaultRooms(){ const arr=[]; for(let i=1;i<=50;i++){ arr.push({number:i,type:'Suite',status:'empty',guest:null}); } return arr; }
+function loadRooms(){ const raw=localStorage.getItem('lg_rooms'); return raw?JSON.parse(raw):defaultRooms(); }
+function saveRooms(r){ localStorage.setItem('lg_rooms',JSON.stringify(r)); }
+function loadOrders(){ const raw=localStorage.getItem('lg_orders'); return raw?JSON.parse(raw):[]; }
+function saveOrders(o){ localStorage.setItem('lg_orders',JSON.stringify(o)); }
+
+let rooms=loadRooms();
+let orders=loadOrders();
+let cart=[];
+
+// Render functions
+function renderRooms(){
+  const container=$('rooms');
+  container.innerHTML='';
+  rooms.forEach(room=>{
+    const div=document.createElement('div');
+    div.className='room';
+    div.innerHTML=`
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h4>Suite ${room.number}</h4>
+        <span class="status ${room.status}">${room.status.toUpperCase()}</span>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" onclick="quickInfo(${room.number})">Info</button>
+        ${room.status==='empty'?`<button class="btn" onclick="openBooking(${room.number})">Book</button>`:`<button class="btn danger" onclick="checkout(${room.number})">Check-out</button>`}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+  // Update assign room select for orders
+  const select=$('assignRoomSelect');
+  select.innerHTML='<option value="">Select suite to assign order</option>';
+  rooms.filter(r=>r.status==='occupied').forEach(r=>{
+    const opt=document.createElement('option'); opt.value=r.number; opt.textContent=`Suite ${r.number}`; select.appendChild(opt);
+  });
+}
+
+// Booking modal
+let bookingTargetRoom=null;
+function openBooking(roomNumber){ bookingTargetRoom=roomNumber; $('bookingModal').style.display='block'; $('modalTitle').textContent=`Book Suite ${roomNumber}`; $('guestName').value=''; $('guestPhone').value=''; window.scrollTo({top:document.body.scrollHeight, behavior:'smooth'});}
+function closeBooking(){ $('bookingModal').style.display='none'; bookingTargetRoom=null; }
+function confirmBooking(){
+  const name=$('guestName').value.trim(); const phone=$('guestPhone').value.trim();
+  if(!name||!phone){ alert('Enter guest name & phone'); return;}
+  const room=rooms.find(r=>r.number===bookingTargetRoom);
+  if(room.status==='occupied'){ alert(`Suite ${bookingTargetRoom} just got booked.`); renderRooms(); return;}
+  rooms=rooms.map(r=> r.number===bookingTargetRoom?{...r,status:'occupied',guest:{name,phone},bookedAt:new Date().toISOString()}:r);
+  saveRooms(rooms); renderRooms(); closeBooking(); alert(`Suite ${bookingTargetRoom} booked for ${name}.`);
+}
+function quickInfo(num){ const r=rooms.find(r=>r.number===num); alert(`Suite ${num}\nStatus: ${r.status}\nGuest: ${r.guest?r.guest.name:'N/A'}`);}
+function checkout(num){ if(!confirm(`Check-out Suite ${num}?`)) return; rooms=rooms.map(r=>r.number===num?{...r,status:'empty',guest:null,bookedAt:null}:r); orders=orders.filter(o=>o.room!==num); saveRooms(rooms); saveOrders(orders); renderRooms(); renderRoomOrdersArea(); alert(`Suite ${num} is now empty.`);}
+
+// Menu / Cart
+function renderMenu(){
+  const container=$('menuList'); container.innerHTML='';
+  MENU.forEach(m=>{
+    const div=document.createElement('div'); div.className='menu-item';
+    div.innerHTML=`<div class="meta">${escapeHtml(m.name)}</div><div><span class="price">${money(m.price)}</span> <button class="btn ghost" onclick="addToCart('${m.id}')">Add</button></div>`;
+    container.appendChild(div);
+  });
+}
+
+function addToCart(id){ const f=cart.find(c=>c.id===id); if(f) f.qty++; else cart.push({id,qty:1}); renderCart();}
+function changeQty(id,delta){ const idx=cart.findIndex(c=>c.id===id); if(idx===-1)return; cart[idx].qty+=delta; if(cart[idx].qty<=0) cart.splice(idx,1); renderCart();}
+function removeFromCart(id){ cart=cart.filter(c=>c.id!==id); renderCart();}
+function renderCart(){
+  const container=$('cartRows'); container.innerHTML='';
+  let total=0;
+  cart.forEach(c=>{
+    const m=MENU.find(x=>x.id===c.id);
+    total+=c.qty*m.price;
+    const row=document.createElement('div'); row.className='cart-row';
+    row.innerHTML=`${escapeHtml(m.name)} x${c.qty} <span>${money(m.price*c.qty)}</span> 
+      <div style="display:inline-flex;gap:4px;">
+      <button class="btn ghost" onclick="changeQty('${c.id}',1)">+</button>
+      <button class="btn ghost" onclick="changeQty('${c.id}',-1)">-</button>
+      <button class="btn danger" onclick="removeFromCart('${c.id}')">x</button>
+      </div>`;
+    container.appendChild(row);
+  });
+  $('cartTotal').textContent=money(total);
+}
+
+// Orders
+function placeOrder(){
+  const roomNumber=Number($('assignRoomSelect').value);
+  if(!roomNumber){ alert('Select occupied suite'); return;}
+  if(cart.length===0){ alert('Cart empty'); return;}
+  const order={ id:'o'+Date.now(), room:roomNumber, items:cart.map(ci=>({...ci,name:MENU.find(m=>m.id===ci.id).name,price:MENU.find(m=>m.id===ci.id).price})), total:cart.reduce((s,ci)=> s+MENU.find(m=>m.id===ci.id).price*ci.qty,0), createdAt:new Date().toISOString(), status:'placed' };
+  orders.push(order); saveOrders(orders); cart=[]; renderCart(); renderRoomOrdersArea(); alert(`Order placed for Suite ${roomNumber}, total ${money(order.total)}.`);}
+function renderRoomOrdersArea(){ const area=$('roomOrdersArea'); area.innerHTML=''; if(orders.length===0){ area.innerHTML='<div class="small muted">No active orders.</div>'; return;} orders.slice().reverse().forEach(o=>{ const card=document.createElement('div'); card.style='border:1px solid #f0fbf0; padding:10px; border-radius:10px; margin-top:8px;'; card.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;"><div><strong>Order ${o.id}</strong><div class="small muted">Suite ${o.room} — ${new Date(o.createdAt).toLocaleString()}</div></div><div style="text-align:right;"><div class="small muted">${o.items.length} items</div><div style="font-weight:700;color:var(--green2)">${money(o.total)}</div></div></div><div style="margin-top:8px;" class="small">${o.items.map(it=>`${escapeHtml(it.name)} x${it.qty}`).join(' • ')}</div><div style="display:flex;gap:8px;margin-top:8px;justify-content:flex-end"><button class="btn ghost" onclick="markOrderServed('${o.id}')">Mark Served</button><button class="btn danger" onclick="cancelOrder('${o.id}')">Cancel</button></div>`; area.appendChild(card);});}
+
+function markOrderServed(id){ const idx=orders.findIndex(o=>o.id===id); if(idx===-1)return; orders[idx].status='served'; saveOrders(orders); alert('Order served.'); renderRoomOrdersArea();}
+function cancelOrder(id){ if(!confirm('Cancel order?')) return; orders=orders.filter(o=>o.id!==id); saveOrders(orders); renderRoomOrdersArea();}
+
+document.getElementById('year').textContent=new Date().getFullYear();
+
+renderMenu(); renderRooms(); renderRoomOrdersArea();
+</script>
+
+</body>
+</html>
